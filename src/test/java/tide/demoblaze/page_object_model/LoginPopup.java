@@ -2,6 +2,7 @@ package tide.demoblaze.page_object_model;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import tide.core.ui.Browser;
 
 public class LoginPopup extends WebPage {
     public By usernameInput = By.id("loginusername");

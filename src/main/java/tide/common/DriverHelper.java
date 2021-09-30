@@ -1,14 +1,26 @@
 package tide.common;
 
-import tide.core.driver.DriverPath;
+import org.openqa.selenium.remote.BrowserType;
+import tide.core.system.Systems;
+import tide.core.system.operating_system.OSType;
+import tide.core.system.properties.driver.DriverFileName;
 
 public class DriverHelper {
-    private static String chromeDriverPath = "src/main/resources/driver/chrome/chromedriver.exe";
-    private static String firefoxDriverPath = "src/main/resources/driver/firefox/geckodriver.exe";
-    private static String edgeDriverPath = "src/main/resources/driver/edge/msedgedriver.exe";
-    public static void setPath(){
-        DriverPath.setChromeDriver(chromeDriverPath);
-        DriverPath.setFirefoxDriver(firefoxDriverPath);
-        DriverPath.setEdgeDriver(edgeDriverPath);
+    private static String driverPath = "src/main/resources/driver/%s/%s/%s";
+    public static void setPath(String browserName){
+        OSType osType = Systems.os().getType();
+        String driverFileName = DriverFileName.get(browserName);
+
+        if(browserName.equals(BrowserType.SAFARI)){
+            //No need driver for safari
+            return;
+        }
+
+        if(osType.equals(OSType.Windows)){
+            driverFileName+=".exe";
+        }
+
+
     }
+
 }
